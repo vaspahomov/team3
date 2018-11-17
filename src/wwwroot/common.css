@@ -104,4 +104,19 @@
 .color4 {
     background-color: magenta;
 }
-
+.unicorn {
+    background-image: url(/images/unicorn.svg);
+    background-color: RGBA(0,0,0,0);
+}
+.bricks {
+    background-image: url(/images/bricks.png);
+    background-color: RGBA(0,0,0,0);
+}
+.bricks2 {
+    background-image: url(/images/bricks2.png);
+    background-color: RGBA(0,0,0,0);
+}
+.package {
+    background-image: url(/images/package.svg);
+    background-color: RGBA(0,0,0,0);
+}
