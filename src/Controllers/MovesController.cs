@@ -20,15 +20,14 @@ namespace thegame.Controllers
         public IActionResult Moves(Guid gameId, [FromBody]UserInputForMovesPost userInput)
         {
             var game = gamesRepo.GetGame(gameId);
-            game = GetNewPosition(game, userInput);
+            SetNewPosition(game, userInput);
             return new ObjectResult(game);
         }
 
-        private GameDto GetNewPosition(GameDto game, UserInputForMovesPost userInput)
+        private void SetNewPosition(GameDto game, UserInputForMovesPost userInput)
         {
-            if (userInput.ClickedPos == null
-                && (userInput.KeyPressed < 37 || userInput.KeyPressed > 40))
-                return game;
+            if (IsCorrectInput(userInput))
+                return;
             var newPos = game.Cells.First(c => c.Type == "color4").Pos;
             if (userInput.KeyPressed != default(char))
             {
@@ -48,15 +47,17 @@ namespace thegame.Controllers
                         break;
                 }
             }
-
-            game.Cells.First(c => c.Type == "color4").Pos = newPos;
-            return game;
+            else
+            {
+                newPos = userInput.ClickedPos;
+            }
+            game.MoveTo(newPos);            
         }
 
-        private bool IsCorrectMove(UserInputForMovesPost userInput)
+        private bool IsCorrectInput(UserInputForMovesPost userInput)
         {
-            return (userInput.ClickedPos != null
-                    || (userInput.KeyPressed >= 37 && userInput.KeyPressed <= 40));
+            return (userInput.ClickedPos == null
+                     && (userInput.KeyPressed < 37 || userInput.KeyPressed > 40));
         }
     }
 }
