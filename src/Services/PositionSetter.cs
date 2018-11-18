@@ -9,23 +9,30 @@ namespace thegame.Services
         {
             if (IsCorrectInput(userInput))
                 return;
-            if (userInput.KeyPressed == default(char))
-                return;
-            switch ((int)userInput.KeyPressed)
+            var newPos = game.Cells.First(c => c.Type == "color4").Pos;
+            if (userInput.KeyPressed != default(char))
             {
-                case 37:
-                    game.Move(Direction.Left);
-                    break;
-                case 39:
-                    game.Move(Direction.Right);
-                    break;
-                case 38:
-                    game.Move(Direction.Up);
-                    break;
-                case 40:
-                    game.Move(Direction.Down);
-                    break;
+                switch ((int)userInput.KeyPressed)
+                {
+                    case 37:
+                        newPos.X--;
+                        break;
+                    case 39:
+                        newPos.X++;
+                        break;
+                    case 38:
+                        newPos.Y--;
+                        break;
+                    case 40:
+                        newPos.Y++;
+                        break;
+                }
             }
+            else
+            {
+                newPos = userInput.ClickedPos;
+            }
+            game.MoveTo(newPos);
         }
 
         private bool IsCorrectInput(UserInputForMovesPost userInput)
