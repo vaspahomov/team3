@@ -15,7 +15,18 @@ function handleApiErrors(result) {
 }
 
 async function startGame() {
-    game = await fetch("/api/games", { method: "POST" })
+    fieldSize = {
+        Rows: document.getElementById("rowsInput").value,
+        Columns: document.getElementById("columnsInput").value
+    };
+    game = await fetch("/api/games",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(fieldSize)
+            })
         .then(handleApiErrors);
     window.history.replaceState(game.id, "The Game", "/" + game.id);
     renderField(game);

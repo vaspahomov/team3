@@ -48,7 +48,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
-    font-size: 55px;
+    font-size: 80%;
     color: #776e65;
     font-weight: bold;
     display: flex;
@@ -69,7 +69,7 @@
     justify-content: center;
     align-items: center;
     font-size: 60pt;
-    color: green;
+    color: limegreen;
 }
 
 .mainButtonContainer {
@@ -88,20 +88,20 @@
 
 
 .color0 {
-    background-color: red;
+    background-color: crimson;
     color: #930;
 }
 
 .color1 {
-    background-color: red;
+    background-color: crimson;
 }
 
 .color2 {
-    background-color: green;
+    background-color: limegreen;
 }
 
 .color3 {
-    background-color: cyan;
+    background-color: deepskyblue;
 }
 
 .color4 {
@@ -129,7 +129,10 @@
     color: #930;
 }
 
-
+.littleInfo {
+   font-size: 23%;
+    color: bisque;
+}
 
 
 .game2048 field td {
