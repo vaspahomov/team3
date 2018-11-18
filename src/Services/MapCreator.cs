@@ -37,7 +37,8 @@ namespace thegame.Services
                 {
                     //new CellDto("5", new Vec(5,9), "package", "", 10),
                     new CellDto($"{0 + point.X},{point.Y}",new Vec(0 + point.X,point.Y), "color2", "2", 10),
-                    new CellDto($"{1 + point.X},{point.Y}",new Vec(1 + point.X,point.Y), "color2", "2", 10)
+                    new CellDto($"{1 + point.X},{point.Y}",new Vec(1 + point.X,point.Y), "color2", "2", 10),
+                    new CellDto($"{2 + point.X},{point.Y}",new Vec(2 + point.X,point.Y), "color4", "2", 10)
                 };
 
             //CellDto[] bricks1 = GetBricks(new Point(0, 0), 10, true);
