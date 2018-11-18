@@ -13,7 +13,8 @@ namespace thegame
         private readonly int rows = 4;
         private readonly int columns = 4;
         public int[,] Field { get; private set; }
-        private static readonly Random r = new Random();
+        public int Score { get; private set; } = 0;
+        private static readonly Random R = new Random();
 
         public GameLogic()
         {
@@ -34,14 +35,6 @@ namespace thegame
         {
             switch (dir)
             {
-                case Direction.Left:
-                    MergeLeft();
-                    MoveLeft();
-                    break;
-                case Direction.Right:
-                    MergeRight();
-                    MoveRight();
-                    break;
                 case Direction.Up:
                     MergeUp();
                     MoveUp();
@@ -50,11 +43,19 @@ namespace thegame
                     MergeDown();
                     MoveDown();
                     break;
+                case Direction.Right:
+                    MergeRight();
+                    MoveRight();
+                    break;
+                case Direction.Left:
+                    MergeLeft();
+                    MoveLeft();
+                    break;
             }
             GenerateTile();
         }
 
-        void MergeLeft()
+        void MergeUp()
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
@@ -66,30 +67,7 @@ namespace thegame
                     if (Field[i, j] == lastValue)
                     {
                         Field[lastPos.I, lastPos.J] *= 2;
-                        Field[i, j] = 0;
-                        lastValue = 0;
-                        continue;
-                    }
-                    lastValue = Field[i, j];
-                    lastPos = (i, j);
-                }
-
-                lastValue = 0;
-            }
-        }
-
-        void MergeRight()
-        {
-            int lastValue = 0;
-            var lastPos = (I: 0, J: 0);
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = size - 1; j > -1; j--)
-                {
-                    if (Field[i, j] == 0) continue;
-                    if (Field[i, j] == lastValue)
-                    {
-                        Field[lastPos.I, lastPos.J] *= 2;
+                        Score += Field[lastPos.I, lastPos.J];
                         Field[i, j] = 0;
                         lastValue = 0;
                         continue;
@@ -106,14 +84,15 @@ namespace thegame
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
-            for (int j = 0; j < size; j++)
+            for (int i = 0; i < size; i++)
             {
-                for (int i = 0; i < size; i++)
+                for (int j = size - 1; j > -1; j--)
                 {
                     if (Field[i, j] == 0) continue;
                     if (Field[i, j] == lastValue)
                     {
                         Field[lastPos.I, lastPos.J] *= 2;
+                        Score += Field[lastPos.I, lastPos.J];
                         Field[i, j] = 0;
                         lastValue = 0;
                         continue;
@@ -126,7 +105,32 @@ namespace thegame
             }
         }
 
-        void MergeUp()
+        void MergeLeft()
+        {
+            int lastValue = 0;
+            var lastPos = (I: 0, J: 0);
+            for (int j = 0; j < size; j++)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    if (Field[i, j] == 0) continue;
+                    if (Field[i, j] == lastValue)
+                    {
+                        Field[lastPos.I, lastPos.J] *= 2;
+                        Score += Field[lastPos.I, lastPos.J];
+                        Field[i, j] = 0;
+                        lastValue = 0;
+                        continue;
+                    }
+                    lastValue = Field[i, j];
+                    lastPos = (i, j);
+                }
+
+                lastValue = 0;
+            }
+        }
+
+        void MergeRight()
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
@@ -138,6 +142,7 @@ namespace thegame
                     if (Field[i, j] == lastValue)
                     {
                         Field[lastPos.I, lastPos.J] *= 2;
+                        Score += Field[lastPos.I, lastPos.J];
                         Field[i, j] = 0;
                         lastValue = 0;
                         continue;
@@ -150,7 +155,7 @@ namespace thegame
             }
         }
 
-        void MoveLeft()
+        void MoveUp()
         {
             for (int i = 0; i < size; i++)
             {
@@ -172,7 +177,7 @@ namespace thegame
             }
         }
 
-        void MoveRight()
+        void MoveDown()
         {
             for (int i = 0; i < size; i++)
             {
@@ -194,7 +199,7 @@ namespace thegame
             }
         }
 
-        void MoveDown()
+        void MoveLeft()
         {
             for (int i = 0; i < size; i++)
             {
@@ -202,7 +207,7 @@ namespace thegame
                 {
                     if (Field[j, i] == 0)
                     {
-                        for (int k = j; k > size; k++)
+                        for (int k = j; k < size; k++)
                         {
                             if (Field[k, i] != 0)
                             {
@@ -216,7 +221,7 @@ namespace thegame
             }
         }
 
-        void MoveUp()
+        void MoveRight()
         {
             for (int i = 0; i < size; i++)
             {
@@ -242,13 +247,13 @@ namespace thegame
         {
             var emptys = GetEmptyTiles().ToArray();
             if (emptys.Length == 0) return;
-            var selectedEmpty = emptys[r.Next() % emptys.Length];
+            var selectedEmpty = emptys[R.Next() % emptys.Length];
             Field[selectedEmpty.Item1, selectedEmpty.Item2] = GetNewTileValue();
         }
 
         int GetNewTileValue()
         {
-            return r.Next() % 5 == 0 ? 4 : 2;
+            return R.Next() % 5 == 0 ? 4 : 2;
         }
 
         IEnumerable<(int, int)> GetEmptyTiles()

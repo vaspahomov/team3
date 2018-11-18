@@ -22,10 +22,9 @@ namespace thegame.Controllers
             var gameId = Guid.NewGuid();
             var game = gamesRepo.NewGame(gameId);
             GameDto dto = new GameDto(CreaterGameDto.Ctreate(game.Field),
-                true, true, 4, 4, gameId, false, 41);
+                true, true, 4, 4, gameId, false, 0);
             CreaterGameDto.Ctreate(game.Field);
             return new ObjectResult(dto);
-            //return new ObjectResult(TestData.AGameDto(new Vec(1, 1)));
         }
     }
 }
