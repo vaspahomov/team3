@@ -22,21 +22,28 @@ namespace thegame.Controllers
         public IActionResult Moves(Guid gameId, [FromBody]UserInputForMovesPost userInput)
         {
             var game = gamesRepo.GetGame(gameId);
+            var cells = (int[,])game.Field.Clone();
             positionSetter.SetPosition(game, userInput);
             CreaterGameDto.Ctreate(game.Field);
-            var isEnd = true;
-            for (var i = 0; i < game.Field.GetLength(0); i++)
-            {
-                for (var j = 0; j < game.Field.GetLength(1); j++)
-                {
-                    if (game.Field[i, j] == 0)
-                        isEnd = false;
-
-                }
-            }
+            var isEnd = IsFinish(cells, game.Field);
             GameDto dto = new GameDto(CreaterGameDto.Ctreate(game.Field),
                 true, true, 4, 4, gameId, isEnd, game.Score);
             return new ObjectResult(dto);
+        }
+
+        private bool IsFinish(int[,] oldCells,int[,] newCells)
+        {
+            for (var i = 0; i < oldCells.GetLength(0); i++)
+            {
+                for (var j = 0; j < oldCells.GetLength(1); j++)
+                {
+                    if (oldCells[i, j] != newCells[i,j] || newCells[i, j]==0)
+                        return false;
+
+                }
+            }
+            return true;
+
         }
     }
 }
