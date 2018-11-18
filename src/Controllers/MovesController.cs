@@ -24,18 +24,8 @@ namespace thegame.Controllers
             var game = gamesRepo.GetGame(gameId);
             positionSetter.SetPosition(game, userInput);
             CreaterGameDto.Ctreate(game.Field);
-            var isEnd = true;
-            for (var i = 0; i < game.Field.GetLength(0); i++)
-            {
-                for (var j = 0; j < game.Field.GetLength(1); j++)
-                {
-                    if (game.Field[i, j] == 0)
-                        isEnd = false;
-
-                }
-            }
             GameDto dto = new GameDto(CreaterGameDto.Ctreate(game.Field),
-                true, true, 4, 4, gameId, isEnd, game.Score);
+                true, true, 4, 4, gameId, false, game.Score);
             return new ObjectResult(dto);
         }
     }
