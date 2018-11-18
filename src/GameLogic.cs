@@ -207,7 +207,7 @@ namespace thegame
                 {
                     if (Field[j, i] == 0)
                     {
-                        for (int k = j; k > size; k++)
+                        for (int k = j; k < size; k++)
                         {
                             if (Field[k, i] != 0)
                             {
