@@ -9,6 +9,7 @@ namespace thegame
 {
     public class GameLogic
     {
+        private readonly int size = 4;
         private readonly int rows = 4;
         private readonly int columns = 4;
         public int[,] Field { get; private set; }
@@ -22,18 +23,17 @@ namespace thegame
             GenerateTile();
         }
 
-        public GameLogic(int rows, int columns)
+        private GameLogic(int rows, int columns)
         {
             this.rows = rows;
             this.columns = columns;
-            Field = new int[rows, columns];
             GenerateTile();
             GenerateTile();
         }
 
         int[,] Copy()
         {
-            int[,] f = new int[rows, columns];
+            int[,] f = new int[rows,columns];
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -88,9 +88,9 @@ namespace thegame
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int j = 0; j < size; j++)
                 {
                     if (Field[i, j] == 0) continue;
                     if (Field[i, j] == lastValue)
@@ -113,9 +113,9 @@ namespace thegame
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = columns - 1; j > -1; j--)
+                for (int j = size - 1; j > -1; j--)
                 {
                     if (Field[i, j] == 0) continue;
                     if (Field[i, j] == lastValue)
@@ -138,9 +138,9 @@ namespace thegame
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
-            for (int j = 0; j < columns; j++)
+            for (int j = 0; j < size; j++)
             {
-                for (int i = 0; i < rows; i++)
+                for (int i = 0; i < size; i++)
                 {
                     if (Field[i, j] == 0) continue;
                     if (Field[i, j] == lastValue)
@@ -163,9 +163,9 @@ namespace thegame
         {
             int lastValue = 0;
             var lastPos = (I: 0, J: 0);
-            for (int j = 0; j < columns; j++)
+            for (int j = 0; j < size; j++)
             {
-                for (int i = rows - 1; i > -1; i--)
+                for (int i = size - 1; i > -1; i--)
                 {
                     if (Field[i, j] == 0) continue;
                     if (Field[i, j] == lastValue)
@@ -186,13 +186,13 @@ namespace thegame
 
         void MoveUp()
         {
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int j = 0; j < size; j++)
                 {
                     if (Field[i, j] == 0)
                     {
-                        for (int k = j; k < columns; k++)
+                        for (int k = j; k < size; k++)
                         {
                             if (Field[i, k] != 0)
                             {
@@ -208,9 +208,9 @@ namespace thegame
 
         void MoveDown()
         {
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = columns - 1; j > -1; j--)
+                for (int j = size - 1; j > -1; j--)
                 {
                     if (Field[i, j] == 0)
                     {
@@ -230,13 +230,13 @@ namespace thegame
 
         void MoveLeft()
         {
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < rows; j++)
+                for (int j = 0; j < size; j++)
                 {
                     if (Field[j, i] == 0)
                     {
-                        for (int k = j; k < rows; k++)
+                        for (int k = j; k < size; k++)
                         {
                             if (Field[k, i] != 0)
                             {
@@ -252,9 +252,9 @@ namespace thegame
 
         void MoveRight()
         {
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = rows - 1; j > -1; j--)
+                for (int j = size-1; j > -1; j--)
                 {
                     if (Field[j, i] == 0)
                     {

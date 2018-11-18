@@ -3,7 +3,6 @@ const startMessage = document.getElementsByClassName("startMessage")[0];
 const startgameOverlay = document.getElementsByClassName("start")[0];
 const scoreElement = document.getElementsByClassName("scoreContainer")[0];
 const startButton = document.getElementsByClassName("startButton")[0];
-const restartButton = document.getElementsByClassName("startButton")[0];
 let game = null;
 let currentCells = {};
 
@@ -16,18 +15,7 @@ function handleApiErrors(result) {
 }
 
 async function startGame() {
-    fieldSize = {
-        Rows: document.getElementById("rowsInput").value,
-        Columns: document.getElementById("columnsInput").value
-    };
-    game = await fetch("/api/games",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(fieldSize)
-            })
+    game = await fetch("/api/games", { method: "POST" })
         .then(handleApiErrors);
     window.history.replaceState(game.id, "The Game", "/" + game.id);
     renderField(game);

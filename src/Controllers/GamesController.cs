@@ -16,12 +16,13 @@ namespace thegame.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index([FromBody]FieldSizePost fieldSize)
+        public IActionResult Index()
         {
+
             var gameId = Guid.NewGuid();
-            var game = gamesRepo.NewGame(gameId, (fieldSize.Rows, fieldSize.Columns));
+            var game = gamesRepo.NewGame(gameId);
             GameDto dto = new GameDto(CreaterGameDto.Ctreate(game.Field),
-                true, true, fieldSize.Rows, fieldSize.Columns, gameId, false, 0);
+                true, true, 4, 4, gameId, false, 0);
             CreaterGameDto.Ctreate(game.Field);
             return new ObjectResult(dto);
         }
