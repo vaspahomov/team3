@@ -9,12 +9,23 @@ namespace thegame
 {
     public class GameLogic
     {
-        private const int size = 4;
-        public int[,] Field { get; private set; } = new int[size, size];
+        private readonly int size = 4;
+        private readonly int rows = 4;
+        private readonly int columns = 4;
+        public int[,] Field { get; private set; }
         private static readonly Random r = new Random();
 
-        GameLogic()
+        public GameLogic()
         {
+            Field = new int[rows, columns];
+            GenerateTile();
+            GenerateTile();
+        }
+
+        private GameLogic(int rows, int columns)
+        {
+            this.rows = rows;
+            this.columns = columns;
             GenerateTile();
             GenerateTile();
         }
@@ -245,9 +256,9 @@ namespace thegame
 
         IEnumerable<(int, int)> GetEmptyTiles()
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < columns; j++)
                 {
                     if (Field[i, j] == 0)
                     {
