@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using thegame.Models;
 using thegame.Services;
@@ -17,7 +18,13 @@ namespace thegame.Controllers
         [HttpPost]
         public IActionResult Index()
         {
-            return new ObjectResult(gamesRepo.NewGame());
+
+            var gameId = Guid.NewGuid();
+            var game = gamesRepo.NewGame(gameId);
+            GameDto dto = new GameDto(CreaterGameDto.Ctreate(game.Field),
+                true, true, 4, 4, gameId, false, 41);
+            CreaterGameDto.Ctreate(game.Field);
+            return new ObjectResult(dto);
             //return new ObjectResult(TestData.AGameDto(new Vec(1, 1)));
         }
     }

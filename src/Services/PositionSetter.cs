@@ -5,7 +5,7 @@ namespace thegame.Services
 {
     public class PositionHandler
     {
-        public void SetPosition(GameDto game, UserInputForMovesPost userInput)
+        public void SetPosition(GameLogic game, UserInputForMovesPost userInput)
         {
             if (IsCorrectInput(userInput))
                 return;

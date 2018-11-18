@@ -6,17 +6,22 @@ using thegame.Models;
 
 namespace thegame.Services
 {
-    public class CreaterGameDto
+    public static  class CreaterGameDto
     {
-        public CellDto[] Ctreate(int[,] numbers)
+        public static CellDto[] Ctreate(int[,] numbers)
         {
             var cells = new List<CellDto>();
             for (int i = 0; i < numbers.GetLength(0); i++)
             {
                 for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                    var content = "collor"+Math.Log(numbers[i, j]);
-                    cells.Add(new CellDto((i*j).ToString(),new Vec(i,j),content,numbers[i,j].ToString(), 0));
+                    var type = "color"+(int)Math.Ceiling(Math.Log(numbers[i, j]));
+                    var content = numbers[i, j] == 0 ? "" : numbers[i, j].ToString();
+                    cells.Add(new CellDto($"{i}:{j}",
+                        new Vec(i,j),
+                        type,
+                        content, 
+                        10));
                 }
             }
 

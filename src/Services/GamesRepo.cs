@@ -7,24 +7,24 @@ namespace thegame.Services
 {
     public class GamesRepo
     {
-        private readonly Dictionary<Guid, GameDto> gamesCollection;
+        private readonly Dictionary<Guid, GameLogic> gamesCollection;
 
         public GamesRepo()
         {
-            gamesCollection = new Dictionary<Guid, GameDto>();
+            gamesCollection = new Dictionary<Guid, GameLogic>();
         }
 
-        public GameDto NewGame()
+        public GameLogic NewGame(Guid Id)
         {
-            var game = TestData.AGameDto(new Vec(3, 3));
-            gamesCollection.Add(game.Id, game);
+            var game = new GameLogic();
+            gamesCollection.Add(Id, game);
             return game;
         }
 
-        public GameDto GetGame(Guid id)
+        public GameLogic GetGame(Guid id)
         {
-            GameDto game;            
-            return gamesCollection.TryGetValue(id, out game) ? game : NewGame();
+            GameLogic game;            
+            return gamesCollection.TryGetValue(id, out game) ? game : NewGame(id);
         }
     }
 }

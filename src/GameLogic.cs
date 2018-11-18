@@ -152,7 +152,6 @@ namespace thegame
 
         void MoveLeft()
         {
-            int lastValue = 0;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -175,10 +174,9 @@ namespace thegame
 
         void MoveRight()
         {
-            int lastValue = 0;
             for (int i = 0; i < size; i++)
             {
-                for (int j = size; j > -1; j--)
+                for (int j = size - 1; j > -1; j--)
                 {
                     if (Field[i, j] == 0)
                     {
@@ -198,7 +196,6 @@ namespace thegame
 
         void MoveDown()
         {
-            int lastValue = 0;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -221,10 +218,9 @@ namespace thegame
 
         void MoveUp()
         {
-            int lastValue = 0;
             for (int i = 0; i < size; i++)
             {
-                for (int j = size; j > -1; j--)
+                for (int j = size-1; j > -1; j--)
                 {
                     if (Field[j, i] == 0)
                     {
@@ -245,6 +241,7 @@ namespace thegame
         void GenerateTile()
         {
             var emptys = GetEmptyTiles().ToArray();
+            if (emptys.Length == 0) return;
             var selectedEmpty = emptys[r.Next() % emptys.Length];
             Field[selectedEmpty.Item1, selectedEmpty.Item2] = GetNewTileValue();
         }
