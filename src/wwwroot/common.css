@@ -21,7 +21,7 @@
 }
 
 .field {
-    background-color: #bbada0;
+    background-color: #776e65;
     margin-top: 10px;
     border-collapse: collapse;
     width: 100%;
@@ -88,7 +88,8 @@
 
 
 .color0 {
-    background-color: blue;
+    background-color: red;
+    color: #930;
 }
 
 .color1 {
@@ -104,7 +105,8 @@
 }
 
 .color4 {
-    background-color: magenta;
+    background-color: #776e65;
+    color: #930;
 }
 .unicorn {
     background-image: url(/images/unicorn.svg);
@@ -121,4 +123,8 @@
 .package {
     background-image: url(/images/package.svg);
     background-color: RGBA(0,0,0,0);
+}
+.unit {
+    background-color: #776e65;
+    color: #930;
 }

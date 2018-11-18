@@ -9,38 +9,31 @@ namespace thegame.Services
 {
     public class MapCreator
     {
-        enum Direction
-        {
-            Left,
-            Right,
-            Top,
-            Down
-        }
+        private readonly HashSet<Point> createdPoints = new HashSet<Point>();
         private readonly string Width;
         private readonly string Height;
         private readonly string _map;
 
-        
         public CellDto[] CreateMap(int width, int height)
         {
-            CellDto[] easyMap = CreateObject(new Point(0,0), "bricks");
-          // CellDto[] easyMap = CreateObject(new Point(1, 0), "bricks");
-
+            CellDto  unit = CreateObject(new Point(0, 0), "unit");
+            CellDto  controlUnit = CreateObject(new Point(3, 0), "color4");
+            CellDto unit1 = CreateObject(new Point(0, 0), "unit");
+            CellDto[] easyMap = new CellDto[3]{ unit, controlUnit, unit1 };
+          
             return easyMap;
         }
 
 
 
-        private CellDto[] CreateObject(Point point , string typeObject)
+        private CellDto CreateObject(Point point , string typeObject)
         {
-            return new[]
-                {
-                    //new CellDto("5", new Vec(5,9), "package", "", 10),
-                    new CellDto($"{0 + point.X},{point.Y}",new Vec(0 + point.X,point.Y), "color2", "2", 10),
-                    new CellDto($"{1 + point.X},{point.Y}",new Vec(1 + point.X,point.Y), "color2", "2", 10),
-                    new CellDto($"{2 + point.X},{point.Y}",new Vec(2 + point.X,point.Y), "color4", "2", 10)
-                };
-
+            if (IsNewPoint(point))
+            {
+                createdPoints.Add(point);
+                return new CellDto($"{0 + point.X},{point.Y}", new Vec(0 + point.X, point.Y), typeObject, "2", 10);
+            }
+            return new CellDto($"{-1},{-1}", new Vec(-1, -1), "color0", "", 0);
             //CellDto[] bricks1 = GetBricks(new Point(0, 0), 10, true);
             //CellDto[] bricks2 = GetBricks(new Point(0, 10), 10, true);
             //CellDto[] bricks3 = GetBricks(new Point(0, 1), 8, false);
@@ -77,6 +70,12 @@ namespace thegame.Services
             //    .ToArray();
 
             throw new NotImplementedException();
+        }
+
+        private bool IsNewPoint(Point point)
+        {
+            return !createdPoints.Contains(point);
+          
         }
 
         private static CellDto[] GetBricks(Point pointStart, int count, bool isVertically)

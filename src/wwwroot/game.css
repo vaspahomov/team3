@@ -32,20 +32,25 @@
     border-collapse: separate;
     border-spacing: 10px;
     border-radius: 6px;
-    background-color: rgb(187, 173, 160);
-}
 
-.game2048 field td {
-    background-color: rgba(238, 228, 218, 0.35)
+    border-color: red; /* Цвет границы */
+    border-style: solid; /* Стиль границы */
+
+ /*background-color: aqua; */
 }
+.game2048 field td {
+        background-color: rgba(238, 228, 218, 0.35);
+        border: 10px;
+        border-color: red; /* Цвет границы */
+    }
 
 .tile-2 {
-    background: #eee4da;
+    background: red;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
 }
 
 .tile-4 {
-    background: #ede0c8;
+    background: red;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0);
 }
 
@@ -123,10 +128,19 @@
 }
 
 .target {
-    background-image: radial-gradient(#9000ff 0, #9000ff 15%, transparent 17%, transparent 100%)
+
+    background-image: radial-gradient(#9000ff 0, #9000ff 15%, transparent 17%, transparent 100%);
+    border: 10px;
+    border-color: red; /* Цвет границы */
 }
 
 .boxOnTarget {
     background-image: url(images/package.svg);
     filter: brightness(50%);
+}
+.unit {
+    color: #f9f6f2;
+    background: #edc22e;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+    font-size: 35px;
 }
