@@ -34,7 +34,7 @@ namespace thegame.Services
             }
         }
 
-        private Direction GetDirectionFromMouseClick(GameLogic game, UserInputForMovesPost userInput)
+        public Direction GetDirectionFromMouseClick(GameLogic game, UserInputForMovesPost userInput)
         {
             var direction = Direction.Up;
             var centerX = (double)game.Field.GetLength(0) / 2;
@@ -45,7 +45,7 @@ namespace thegame.Services
             Direction verticalDirection;
             Direction horizontalDirection;
             horizontalDirection = difX > 0 ? Direction.Right : Direction.Left;
-            verticalDirection = difY > 0 ? Direction.Up : Direction.Down;
+            verticalDirection = difY > 0 ? Direction.Down : Direction.Up;
             return difference > 0 ? horizontalDirection : verticalDirection;
         }
 
