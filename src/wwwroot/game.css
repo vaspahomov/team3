@@ -33,8 +33,7 @@
     border-spacing: 10px;
     border-radius: 6px;
 
-    border-color: red; /* Цвет границы */
-    border-style: solid; /* Стиль границы */
+
 
  /*background-color: aqua; */
 }
@@ -127,10 +126,9 @@
 }
 
 .target {
-
     background-image: radial-gradient(#9000ff 0, #9000ff 15%, transparent 17%, transparent 100%);
     border: 10px;
-    border-color: red; /* Цвет границы */
+    border-color: #776e65; /* Цвет границы */
 }
 
 .boxOnTarget {

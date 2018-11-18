@@ -15,7 +15,6 @@ namespace thegame.Services
             {
                 for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                   
                     var content = numbers[i, j] == 0 ? "" : numbers[i, j].ToString();
                     var type = "tile-"+ content;
                     cells.Add(new CellDto($"{i}:{j}",
