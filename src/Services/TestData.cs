@@ -18,7 +18,7 @@ namespace thegame.Services
             var map = mapCreator.CreateMap(width, height);
 
 
-            return new GameDto(map, true, true, width, height, Guid.Empty, movingObjectPosition.X == 0, movingObjectPosition.Y);
+            return new GameDto(map, true, true, width, height, Guid.NewGuid(), movingObjectPosition.X == 0, movingObjectPosition.Y);
 
         }
 
