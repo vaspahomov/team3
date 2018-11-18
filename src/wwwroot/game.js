@@ -1,8 +1,10 @@
 ﻿const field = document.getElementById("field");
 const startMessage = document.getElementsByClassName("startMessage")[0];
 const startgameOverlay = document.getElementsByClassName("start")[0];
+const restartgameOverlay = document.getElementsByClassName("restart")[0];
 const scoreElement = document.getElementsByClassName("scoreContainer")[0];
 const startButton = document.getElementsByClassName("startButton")[0];
+const restartButton = document.getElementsByClassName("restartButton")[0];
 let game = null;
 let currentCells = {};
 
@@ -147,6 +149,9 @@ function initializePage() {
     // use gameId if you want
     startButton.addEventListener("click", e => {
         startgameOverlay.classList.toggle("hidden", true);
+        startGame();
+    });
+    restartButton.addEventListener("click", e => {
         startGame();
     });
     addKeyboardListener();
