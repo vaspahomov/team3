@@ -72,10 +72,51 @@
     color: limegreen;
 }
 
+.scoreContainer, .best-container {
+    position: relative;
+    display: inline-block;
+    background: #bbada0;
+    padding: 15px 25px;
+    font-size: 25px;
+    height: 25px;
+    line-height: 47px;
+    font-weight: bold;
+    border-radius: 3px;
+    color: white;
+    margin-top: 8px;
+    text-align: center;
+}
+
 .mainButtonContainer {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     margin: 20px auto;
     width: 200px;
 }
+.restartButton {
+    display: inline-block;
+    background: #8f7a66;
+    border-radius: 3px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: #f9f6f2;
+    height: 40px;
+    line-height: 42px;
+    display: block;
+    text-align: center;
+    float: right;
+}
+
+a {
+    color: #776e65;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
 .startButton {
     height: 50px;
     width: 100%;
