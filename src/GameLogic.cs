@@ -31,8 +31,36 @@ namespace thegame
             GenerateTile();
         }
 
+        int[,] Copy()
+        {
+            int[,] f = new int[rows,columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    f[i, j] = Field[i, j];
+                }
+            }
+
+            return f;
+        }
+
+        bool isChanged(int[,] f)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (f[i, j] != Field[i, j]) return true;
+                }
+            }
+
+            return false;
+        }
+
         public void Move(Direction dir)
         {
+            var f = Copy();
             switch (dir)
             {
                 case Direction.Up:
@@ -52,7 +80,8 @@ namespace thegame
                     MoveLeft();
                     break;
             }
-            GenerateTile();
+            if (isChanged(f))
+                GenerateTile();
         }
 
         void MergeUp()

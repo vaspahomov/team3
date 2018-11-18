@@ -37,8 +37,8 @@ namespace thegame.Services
         public Direction GetDirectionFromMouseClick(GameLogic game, UserInputForMovesPost userInput)
         {
             var direction = Direction.Up;
-            var centerX = (double)game.Field.GetLength(0) / 2;
-            var centerY = (double)game.Field.GetLength(1) / 2;
+            var centerX = (double)(game.Field.GetLength(0) - 1) / 2;
+            var centerY = (double)(game.Field.GetLength(1) - 1) / 2;
             var difX = userInput.ClickedPos.X - centerX;
             var difY = userInput.ClickedPos.Y - centerY;
             var difference = Math.Abs(difX) - Math.Abs(difY);
