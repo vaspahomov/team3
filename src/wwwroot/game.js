@@ -149,6 +149,7 @@ function initializePage() {
     // use gameId if you want
     startButton.addEventListener("click", e => {
         startgameOverlay.classList.toggle("hidden", true);
+        restartgameOverlay.classList.toggle("hidden", false);
         startGame();
     });
     restartButton.addEventListener("click", e => {
