@@ -28,7 +28,7 @@ namespace thegame.Controllers
         {
             if (IsCorrectInput(userInput))
                 return;
-            var newPos = game.Cells.First(c => c.Type == "color4").Pos;
+            var newPos = game.Cells.First(c => c.Type == "unicorn").Pos;
             if (userInput.KeyPressed != default(char))
             {
                 switch ((int)userInput.KeyPressed)
@@ -51,7 +51,9 @@ namespace thegame.Controllers
             {
                 newPos = userInput.ClickedPos;
             }
-            game.MoveTo(newPos);            
+
+            game.Cells.First(c => c.Type == "unicorn");
+            //game.MoveTo(newPos);            
         }
 
         private bool IsCorrectInput(UserInputForMovesPost userInput)
