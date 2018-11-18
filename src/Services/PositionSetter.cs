@@ -32,7 +32,7 @@ namespace thegame.Services
             {
                 newPos = userInput.ClickedPos;
             }
-            game.MoveTo(newPos);
+            game.Cells.First(c => c.Type == "color4");
         }
 
         private bool IsCorrectInput(UserInputForMovesPost userInput)

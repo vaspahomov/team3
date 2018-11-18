@@ -23,8 +23,8 @@ namespace thegame.Services
         
         public CellDto[] CreateMap(int width, int height)
         {
-            CellDto[] easyMap = CreateObject(new Point(1,10), "bricks");
-
+            CellDto[] easyMap = CreateObject(new Point(0,0), "bricks");
+          // CellDto[] easyMap = CreateObject(new Point(1, 0), "bricks");
 
             return easyMap;
         }
@@ -36,7 +36,8 @@ namespace thegame.Services
             return new[]
                 {
                     //new CellDto("5", new Vec(5,9), "package", "", 10),
-                    new CellDto("unicorn",new Vec(point.X,point.Y), "unicorn", "", 10)
+                    new CellDto($"{0 + point.X},{point.Y}",new Vec(0 + point.X,point.Y), "color2", "2", 10),
+                    new CellDto($"{1 + point.X},{point.Y}",new Vec(1 + point.X,point.Y), "color2", "2", 10)
                 };
 
             //CellDto[] bricks1 = GetBricks(new Point(0, 0), 10, true);

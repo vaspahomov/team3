@@ -21,6 +21,7 @@
 }
 
 .field {
+    background-color: #bbada0;
     margin-top: 10px;
     border-collapse: collapse;
     width: 100%;
@@ -43,6 +44,7 @@
 }
 
 .cell {
+    background-color: #bbada0;
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
