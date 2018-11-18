@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using thegame.Models;
 
 namespace thegame.Services
@@ -25,6 +26,13 @@ namespace thegame.Services
         {
             GameLogic game;            
             return gamesCollection.TryGetValue(id, out game) ? game : NewGame(id);
+        }
+
+        public IEnumerable<GameLogic> GetTopSessions()
+        {
+            return gamesCollection.Values
+                .OrderByDescending(c => c.Score)
+                .Take(5);
         }
     }
 }
