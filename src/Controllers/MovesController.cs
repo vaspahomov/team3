@@ -9,9 +9,9 @@ namespace thegame.Controllers
     public class MovesController : Controller
     {
         private GamesRepo gamesRepo;
-        private PositionSetter positionSetter;
+        private PositionHandler positionSetter;
 
-        public MovesController(GamesRepo repo, PositionSetter positionSetter)
+        public MovesController(GamesRepo repo, PositionHandler positionSetter)
         {
             gamesRepo = repo;
             this.positionSetter = positionSetter;
