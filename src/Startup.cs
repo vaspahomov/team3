@@ -20,7 +20,7 @@ namespace thegame
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<PositionSetter>();
+            services.AddScoped<PositionHandler>();
             services.AddSingleton(new GamesRepo());
             
         }
