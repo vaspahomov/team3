@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using thegame.Models;
 using thegame.Services;
@@ -10,17 +9,19 @@ namespace thegame.Controllers
     public class MovesController : Controller
     {
         private GamesRepo gamesRepo;
+        private PositionSetter positionSetter;
 
-        public MovesController(GamesRepo repo)
+        public MovesController(GamesRepo repo, PositionSetter positionSetter)
         {
             gamesRepo = repo;
+            this.positionSetter = positionSetter;
         }
 
         [HttpPost]
         public IActionResult Moves(Guid gameId, [FromBody]UserInputForMovesPost userInput)
         {
             var game = gamesRepo.GetGame(gameId);
-            SetNewPosition(game, userInput);
+            positionSetter.SetPosition(game, userInput);
             return new ObjectResult(game);
         }
 
