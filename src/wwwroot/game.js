@@ -3,7 +3,6 @@ const startMessage = document.getElementsByClassName("startMessage")[0];
 const startgameOverlay = document.getElementsByClassName("start")[0];
 const scoreElement = document.getElementsByClassName("scoreContainer")[0];
 const startButton = document.getElementsByClassName("startButton")[0];
-const restartButton = document.getElementsByClassName("startButton")[0];
 let game = null;
 let currentCells = {};
 
