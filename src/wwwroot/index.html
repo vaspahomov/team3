@@ -7,6 +7,9 @@
 <body>
     <div class="gameContainer game2048">
         <div class="scoreContainer"></div>
+        <div class="restartButtonContainer">
+             <button class="restartButton" type="submit">New Game</button>
+        </div>
         <table id="field" class="field"></table>
         <div class="leaderboard">
             <h2>Leaderboard</h2>
@@ -16,7 +19,15 @@
     <div class="hidden overlay gameover">Game Over</div>
     <div class="overlay start">
         <div>
-            <div class="startMessage">Select level</div>
+            <div class="startMessage">Выбери размер поля</div>
+            <div class="littleInfo">
+                Количество строк
+                <input id="rowsInput" type="number" value="4" min="4" max="10" />
+            </div>
+            <div class="littleInfo">
+                Количество столбцов
+                <input id="columnsInput" type="number" value="4" min="4" max="10" />
+            </div>
             <div class="mainButtonContainer">
                 <button class="startButton" type="submit">START</button>
             </div>
