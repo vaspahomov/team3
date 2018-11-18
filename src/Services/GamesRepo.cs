@@ -27,12 +27,5 @@ namespace thegame.Services
             GameLogic game;            
             return gamesCollection.TryGetValue(id, out game) ? game : NewGame(id);
         }
-
-        public IEnumerable<GameLogic> GetTopSessions()
-        {
-            return gamesCollection.Values
-                .OrderByDescending(c => c.Score)
-                .Take(5);
-        }
     }
 }

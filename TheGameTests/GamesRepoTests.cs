@@ -24,13 +24,13 @@ namespace TheGameTests
             }
         }
 
-        [Test]
-        public void GetTopSessions_IsCorrect()
-        {
-            var topGames = gamesRepo.GetTopSessions().ToArray();
-            Assert.AreEqual(14, topGames[0].Score);
-            Assert.AreEqual(13, topGames[1].Score);
-            Assert.AreEqual(12, topGames[2].Score);
-        }
+        //[Test]
+        //public void GetTopSessions_IsCorrect()
+        //{
+        //    var topGames = gamesRepo.GetTopSessions().ToArray();
+        //    Assert.AreEqual(14, topGames[0].Score);
+        //    Assert.AreEqual(13, topGames[1].Score);
+        //    Assert.AreEqual(12, topGames[2].Score);
+        //}
     }
 }

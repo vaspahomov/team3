@@ -25,13 +25,13 @@ function makeMove(userInput) {
     if (!game || game.isFinished) return;
     console.log("send userInput: %o", userInput);
     fetch(`/api/games/${game.id}/moves`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(userInput)
-            })
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userInput)
+        })
         .then(handleApiErrors)
         .then(newGame => {
             game = newGame;
