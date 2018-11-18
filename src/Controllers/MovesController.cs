@@ -25,7 +25,7 @@ namespace thegame.Controllers
             positionSetter.SetPosition(game, userInput);
             CreaterGameDto.Ctreate(game.Field);
             GameDto dto = new GameDto(CreaterGameDto.Ctreate(game.Field),
-                true, true, 4, 4, gameId, false, 41);
+                true, true, 4, 4, gameId, false, game.Score);
             return new ObjectResult(dto);
         }
     }
