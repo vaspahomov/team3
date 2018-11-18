@@ -44,7 +44,7 @@
     }
 
 .tile-2 {
-    background-color: green;
+    background-color: green !important;
     color: #930;
 }
 .tile-4 {
