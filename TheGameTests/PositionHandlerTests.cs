@@ -26,6 +26,7 @@ namespace Tests
 
         [TestCase(Direction.Up, 1, 0)]
         [TestCase(Direction.Left, 0, 1)]
+        [TestCase(Direction.Right, 3, 1)]
         [TestCase(Direction.Right, 3, 2)]
         [TestCase(Direction.Down, 2, 3)]
         public void GetDirectionFromMouse_Field4x4_IsCorrect(Direction expected, int X, int Y)
