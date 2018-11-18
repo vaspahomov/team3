@@ -29,7 +29,7 @@ namespace TheGameTests
         [Test]
         public void AddLeaderBoardRecords_OrderIsCorrect()
         {
-            var lead = leadBoard.GetTopSessions(leadBoardFilename);
+            var lead = leadBoard.GetTopSessions(5, leadBoardFilename);
             Assert.AreEqual(count - 1, lead[0].Score);            
         }
     }
