@@ -13,9 +13,9 @@ namespace thegame.Models
             Height = height;
             Id = id;
             IsFinished = isFinished;
-            Score = score;
+            Score = score;            
         }
-
+        
         public CellDto[] Cells;
         public int Width;
         public int Height;

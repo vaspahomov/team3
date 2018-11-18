@@ -12,7 +12,7 @@ namespace thegame
         private readonly int rows = 4;
         private readonly int columns = 4;
         public int[,] Field { get; private set; }
-        public int Score { get; private set; } = 0;
+        public int Score { get; set; } = 0;
         private static readonly Random R = new Random();
 
         public GameLogic()
