@@ -11,8 +11,7 @@ namespace thegame.Services
         {
             var width = 4;
             var height = 4;
-            MapCreator mapCreator = new MapCreator();
-            var map = mapCreator.CreateMap(width, height);
+            var map =  new CellDto[0];
             return new GameDto(map, true, true, width, height, Guid.NewGuid(), movingObjectPosition.X == 0, movingObjectPosition.Y);
         }
     }
