@@ -7,6 +7,6 @@ namespace thegame.Models
 {
     public enum Direction
     {
-        Up, Down, Left, Right
+        Up, Down, Right, Left
     }
 }

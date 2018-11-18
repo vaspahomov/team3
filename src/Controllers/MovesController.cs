@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using thegame.Models;
 using thegame.Services;
@@ -9,9 +10,9 @@ namespace thegame.Controllers
     public class MovesController : Controller
     {
         private GamesRepo gamesRepo;
-        private PositionSetter positionSetter;
+        private PositionHandler positionSetter;
 
-        public MovesController(GamesRepo repo, PositionSetter positionSetter)
+        public MovesController(GamesRepo repo, PositionHandler positionSetter)
         {
             gamesRepo = repo;
             this.positionSetter = positionSetter;
@@ -25,6 +26,42 @@ namespace thegame.Controllers
             return new ObjectResult(game);
         }
 
-        
+        private void SetNewPosition(GameDto game, UserInputForMovesPost userInput)
+        {
+            if (IsCorrectInput(userInput))
+                return;
+            var newPos = game.Cells.First(c => c.Type == "unicorn").Pos;
+            if (userInput.KeyPressed != default(char))
+            {
+                switch ((int)userInput.KeyPressed)
+                {
+                    case 37:
+                        newPos.X--;
+                        break;
+                    case 39:
+                        newPos.X++;
+                        break;
+                    case 38:
+                        newPos.Y--;
+                        break;
+                    case 40:
+                        newPos.Y++;
+                        break;
+                }
+            }
+            else
+            {
+                newPos = userInput.ClickedPos;
+            }
+
+            game.Cells.First(c => c.Type == "unicorn");
+            //game.MoveTo(newPos);            
+        }
+
+        private bool IsCorrectInput(UserInputForMovesPost userInput)
+        {
+            return (userInput.ClickedPos == null
+                     && (userInput.KeyPressed < 37 || userInput.KeyPressed > 40));
+        }
     }
 }
