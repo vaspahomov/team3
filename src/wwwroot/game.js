@@ -150,6 +150,7 @@ function initializePage() {
     startButton.addEventListener("click", e => {
         startgameOverlay.classList.toggle("hidden", true);
         restartgameOverlay.classList.toggle("hidden", false);
+        restartgameOverlay.classList.toggle("restart-button", false);
         startGame();
     });
     restartButton.addEventListener("click", e => {
