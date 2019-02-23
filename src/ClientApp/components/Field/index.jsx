@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './styles.css'
 
 const deployServerUrl = 'http://gamehack3.azurewebsites.net/'
-const testServerUrl = 'http://lockalhost:5000/'
+const testServerUrl = 'http://localhost:5000/'
 const userId = 0
 
-const serv = deployServerUrl;
+const serv = testServerUrl;
 
 
 class RedCell extends React.Component {
@@ -87,6 +87,21 @@ class BlueCell extends React.Component {
 export default class Field extends React.Component {
     constructor(props) {
         super(props);
+
+        fetch(serv + `api/game/startGame/${userId}`,
+        {
+            method: "POST"
+        })
+
+        
+        let resp = fetch(serv + `api/game/getMap/${userId}`)
+        .then(response => response.json())
+        .catch();
+
+        
+        
+        console.log(resp)
+
         this.state = {
             field: [
                 [
