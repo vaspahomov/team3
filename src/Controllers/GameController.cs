@@ -1,15 +1,15 @@
 using System;
-using Microsoft.AspNetCore.JsonPatch;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace thegame.Controllers
 {
     public class StartGameDTO
     {
+        public int colorCount;
         public int h;
         public int w;
-        public int colorCount;
     }
 
     [Route("api/game")]
@@ -24,16 +24,14 @@ namespace thegame.Controllers
         }
 
         [HttpPost("{UserId}/startGame")]
-        public IActionResult StartGame([FromBody] JsonPatchDocument<StartGameDTO> patchDocument)
+        public IActionResult StartGame([FromBody] string patchDocument)
         {
-            //TODO Не пересоздавать игру
-            if (patchDocument is null)
-                return BadRequest();
-            var startGameDTO = new StartGameDTO();
-            patchDocument.ApplyTo(startGameDTO, ModelState);
-            game = new Game(startGameDTO.h, startGameDTO.w, startGameDTO.colorCount);
+            var jObj = JsonConvert.DeserializeObject<Dictionary<string, string>>(patchDocument);
+            //return BadRequest();
+            game = new Game(int.Parse(jObj["h"]), int.Parse(jObj["w"]), int.Parse(jObj["colorCount"]));
             return Ok();
         }
+
         [HttpGet("{UserId}/getMap")]
         public IActionResult GetMap()
         {
@@ -44,9 +42,7 @@ namespace thegame.Controllers
         [HttpPost("postColor/{UserId}/{color}")]
         public IActionResult PostColor()
         {
-
             return Ok(200);
         }
     }
-
 }
