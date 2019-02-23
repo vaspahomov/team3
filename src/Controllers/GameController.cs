@@ -16,12 +16,7 @@ namespace thegame.Controllers
     [Route("api/game")]
     public class GameController : Controller
     {
-        private static Game game { get; set; }
-
-        public GameController()
-        {
-            game = new Game(5, 5, 5);
-        }
+        private static Game game = new Game(5, 5, 5);
 
         [HttpGet("{UserId}/score")]
         public IActionResult Score([FromRoute] Guid Id)
@@ -51,7 +46,7 @@ namespace thegame.Controllers
         [HttpPost("{UserId}/postColor/{color}")]
         public IActionResult PostColor([FromRoute] Guid Id, [FromRoute] int color)
         {
-
+            game.DoStep(color);
             return Ok(200);
         }
     }
