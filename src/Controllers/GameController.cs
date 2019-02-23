@@ -48,7 +48,7 @@ namespace thegame.Controllers
             return Ok(game.Map);
         }
 
-        [HttpPost("postColor/{UserId}/{color}")]
+        [HttpPost("{UserId}/postColor/{color}")]
         public IActionResult PostColor([FromRoute] Guid Id, [FromRoute] int color)
         {
 
