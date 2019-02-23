@@ -1,11 +1,8 @@
 import React from 'react';
 import styles from './styles.css'
 
-const deployServerUrl = 'http://gamehack3.azurewebsites.net/'
-const testServerUrl = 'https://localhost:5001/'
-const userId = 0
 
-const serv = testServerUrl;
+const userId = 0
 
 
 class RedCell extends React.Component {
@@ -17,7 +14,7 @@ class RedCell extends React.Component {
 
     handlerOnClick = event => {
         const colorInt = 2;
-        fetch(serv + `api/game/${userId}/postColor/${colorInt}`,
+        fetch(`/api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
             })
@@ -32,7 +29,7 @@ class GreenCell extends React.Component {
 
     handlerOnClick = event => {
         const colorInt = 2;
-        fetch(serv + `api/game/${userId}/postColor/${colorInt}`,
+        fetch(`/api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
             })
@@ -47,7 +44,7 @@ class CyanCell extends React.Component {
 
     handlerOnClick = event => {
         const colorInt = 3;
-        fetch(serv + `api/game/${userId}/postColor/${colorInt}`,
+        fetch(`/api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
             })
@@ -62,7 +59,7 @@ class MagentaCell extends React.Component {
 
     handlerOnClick = event => {
         const colorInt = 4;
-        fetch(serv + `api/game/${userId}/postColor/${colorInt}`,
+        fetch(`/api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
             })
@@ -77,7 +74,7 @@ class BlueCell extends React.Component {
 
     handlerOnClick = event => {
         const colorInt = 5;
-        fetch(serv + `api/game/${userId}/postColor/${colorInt}`,
+        fetch(`/api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
             })
@@ -88,7 +85,7 @@ export default class Field extends React.Component {
     constructor(props) {
         super(props);
 
-        fetch(serv + `api/game/${userId}/startGame`,
+        fetch(`/api/game/${userId}/startGame`,
             {
                 method: "POST",
                 body: {
@@ -100,7 +97,7 @@ export default class Field extends React.Component {
             .catch(x => console.log(x));
 
 
-        let resp = fetch(serv + `api/game/${userId}/getMap`)
+        let resp = fetch(`/api/game/${userId}/getMap`)
             .then(response => response.json())
             .catch(x => console.log(x));
 
@@ -131,7 +128,7 @@ export default class Field extends React.Component {
     }, 1000);
 
     generateNewState = () => {
-        const newField = fetch(serv + `api/game/${userId}/getMap`)
+        const newField = fetch(`/api/game/${userId}/getMap`)
         .then(response => response.json())
         .catch(x => console.log(x));
 
