@@ -85,56 +85,29 @@ export default class Field extends React.Component {
     constructor(props) {
         super(props);
 
-        fetch(`/api/game/${userId}/startGame`,
-            {
-                method: "POST",
-                body: {
-                    "h": "5",
-                    "w": "5",
-                    "colorCount": "5",
-                }
-            })
-            .catch(x => console.log(x));
-
-
-        let resp = fetch(`/api/game/${userId}/getMap`)
-            .then(response => response.json())
-            .catch(x => console.log(x));
-
-
-        console.log(resp)
-
-        this.state = {
-            field: [
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-            ]
-        }
+        this.state = { field: [] };
     }
 
-    randomGenerate = setInterval(() => {
-        this.setState = {
-            field: [
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
-            ]
-        }
-    }, 1000);
+    componentDidMount() {
+        console.log(1)
+        fetch(`/api/game/${userId}/getMap`)
+            .then(response => response.json())
+            .then(response => {
+                this.setState({ field: response });
+                console.log(response);
+            });
+    }
 
     generateNewState = () => {
-        const newField = fetch(`/api/game/${userId}/getMap`)
-        .then(response => response.json())
-        .catch(x => console.log(x));
-
-        this.setState = {
-            field: newField
-        }
+        console.log(2)
+        fetch(`/api/game/${userId}/getMap`)
+            .then(response => response.json())
+            .then(resp => {
+                console.log(resp)
+                this.setState({
+                    field: resp
+                });
+            })
     }
 
     render() {
@@ -169,7 +142,22 @@ function getSingleMarkup(colorValue) {
     }
 }
 
+
 function getMarkup(field) {
+    if (field.length === 0)
+        return (<table className={styles.field}></table>);
+    // {
+    //     if (field[0].length !== 5)
+    //         return (<table className={styles.field}></table>);
+    //     if (field[1].length !== 5)
+    //         return (<table className={styles.field}></table>);
+    //     if (field[2].length !== 5)
+    //         return (<table className={styles.field}></table>);
+    //     if (field[3].length !== 5)
+    //         return (<table className={styles.field}></table>);
+    //     if (field[4].length !== 5)
+    //         return (<table className={styles.field}></table>);
+    // }
     return (
         <table className={styles.field}>
             <tr>
