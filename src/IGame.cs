@@ -2,6 +2,6 @@
 {
     public interface IGame
     {
-        
+        void MapGeneration();
     }
 }
