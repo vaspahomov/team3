@@ -16,7 +16,7 @@ class RedCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const colorInt = 1;
+        const colorInt = 2;
         fetch(serv + `api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
@@ -97,12 +97,12 @@ export default class Field extends React.Component {
                     "colorCount": "5",
                 }
             })
-            .catch(x=> console.log(x));
+            .catch(x => console.log(x));
 
 
         let resp = fetch(serv + `api/game/${userId}/getMap`)
             .then(response => response.json())
-            .catch(x=> console.log(x));
+            .catch(x => console.log(x));
 
 
         console.log(resp)
@@ -130,11 +130,25 @@ export default class Field extends React.Component {
         }
     }, 1000);
 
+    generateNewState = () => {
+        const newField = fetch(serv + `api/game/${userId}/getMap`)
+        .then(response => response.json())
+        .catch(x => console.log(x));
+
+        this.setState = {
+            field: newField
+        }
+    }
+
     render() {
         return (
-            getMarkup(this.state.field)
+            <div onClick={this.generateNewState}>
+                {getMarkup(this.state.field)}
+            </div>
         );
     }
+
+
 }
 
 function getRandomInt(min, max) {
