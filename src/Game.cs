@@ -11,7 +11,7 @@ namespace thegame
         private readonly int Width;
         private readonly int Height;
 
-        public Game(int h, int w, int colorsCount = 5)
+        public Game(int h, int w, int colorsCount)
         {
             ColorsCount = colorsCount;
             Width = w;

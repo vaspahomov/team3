@@ -1,9 +1,17 @@
 using System;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace thegame.Controllers
 {
+    public class StartGameDTO
+    {
+        public int h;
+        public int w;
+        public int colorCount;
+    }
+
     [Route("api/game")]
     public class GameController : Controller
     {
@@ -16,15 +24,20 @@ namespace thegame.Controllers
         }
 
         [HttpPost("{UserId}/startGame")]
-        public IActionResult StartGame([FromBody] int h, [FromBody] int w, [FromBody] int colorCount)
+        public IActionResult StartGame([FromBody] JsonPatchDocument<StartGameDTO> patchDocument)
         {
             //TODO Не пересоздавать игру
-            game = new Game(h, w, colorCount);
-            return Ok(100);
+            if (patchDocument is null)
+                return BadRequest();
+            var startGameDTO = new StartGameDTO();
+            patchDocument.ApplyTo(startGameDTO, ModelState);
+            game = new Game(startGameDTO.h, startGameDTO.w, startGameDTO.colorCount);
+            return Ok();
         }
         [HttpGet("{UserId}/getMap")]
         public IActionResult GetMap()
         {
+            Console.Write(game.Map.Length);
             return Ok(game.Map);
         }
 
