@@ -1,6 +1,13 @@
 import React from 'react';
 import styles from './styles.css'
 
+const deployServerUrl = 'http://gamehack3.azurewebsites.net/'
+const testServerUrl = 'http://lockalhost:5000/'
+const userId = 0
+
+const serv = deployServerUrl;
+
+
 class RedCell extends React.Component {
     render() {
         return (
@@ -9,7 +16,11 @@ class RedCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const value = extractNumberString(event.target.value);
+        const colorInt = 1;
+        fetch(serv + `api/game/postColor/${userId}/${colorInt}`,
+            {
+                method: "POST"
+            })
     }
 }
 class GreenCell extends React.Component {
@@ -20,7 +31,11 @@ class GreenCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const value = extractNumberString(event.target.value);
+        const colorInt = 2;
+        fetch(serv + `api/game/postColor/${userId}/${colorInt}`,
+            {
+                method: "POST"
+            })
     }
 }
 class CyanCell extends React.Component {
@@ -31,7 +46,11 @@ class CyanCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const value = extractNumberString(event.target.value);
+        const colorInt = 3;
+        fetch(serv + `api/game/postColor/${userId}/${colorInt}`,
+            {
+                method: "POST"
+            })
     }
 }
 class MagentaCell extends React.Component {
@@ -42,7 +61,11 @@ class MagentaCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const value = extractNumberString(event.target.value);
+        const colorInt = 4;
+        fetch(serv + `api/game/postColor/${userId}/${colorInt}`,
+            {
+                method: "POST"
+            })
     }
 }
 class BlueCell extends React.Component {
@@ -53,7 +76,11 @@ class BlueCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const value = extractNumberString(event.target.value);
+        const colorInt = 5;
+        fetch(serv + `api/game/postColor/${userId}/${colorInt}`,
+            {
+                method: "POST"
+            })
     }
 }
 
