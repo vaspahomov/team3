@@ -89,76 +89,101 @@ export default class Field extends React.Component {
         super(props);
 
         fetch(serv + `api/game/${userId}/startGame`,
-        {
-            method: "POST"
-        })
-        .catch(alert("fail"));
+            {
+                method: "POST",
+                body: {
+                    "h": "5",
+                    "w": "5",
+                    "colorCount": "5",
+                }
+            })
+            .catch(alert("fail"));
 
-        
+
         let resp = fetch(serv + `api/game/${userId}/getMap`)
-        .then(response => response.json())
-        .catch(alert("fail"));
-       
-        
+            .then(response => response.json())
+            .catch(alert("fail"));
+
+
         console.log(resp)
 
         this.state = {
             field: [
-                [
-
-                ]
+                [1, 2, 3, 4, 5],
+                [2, 3, 2, 2, 1],
+                [5, 2, 3, 2, 1],
+                [4, 2, 5, 4, 1],
+                [3, 2, 2, 1, 5],
             ]
         }
     }
 
-
-
     render() {
         return (
-            <table className={styles.field}>
+            getMarkup(this.state.field)
+        );
+    }
+}
 
-                <tr>
-                    {/* Это строчка на поле */}
-                    <RedCell />
-                    {/* Это ячейка на поле. Класс color1...color5 задает цвет ячейки. Цвета можно изменить в файле styles.css */}
-                    <RedCell />
-                    <GreenCell />
-                    <RedCell />
-                    <CyanCell />
-                    {/* Клеток в строках может быть сколько угодно, они будут пропорционально
+function getSingleMarkup(colorValue) {
+    switch (colorValue) {
+        case 1:
+            return <RedCell />
+        case 2:
+            return <GreenCell />
+        case 3:
+            return <CyanCell />
+        case 4:
+            return <MagentaCell />
+        case 5:
+            return <BlueCell />
+        default:
+            return <div />
+    }
+}
+
+function getMarkup(field) {
+    return (
+        <table className={styles.field}>
+            <tr>
+                {getSingleMarkup(field[0][0])}
+                {getSingleMarkup(field[0][1])}
+                {getSingleMarkup(field[0][2])}
+                {getSingleMarkup(field[0][3])}
+                {getSingleMarkup(field[0][4])}
+                {/* Клеток в строках может быть сколько угодно, они будут пропорционально
                 менять размер, в зависимости от количества.
                 Для того, чтобы верстка работала корректно, нужно, чтобы количество клеток в разных строках было
                 одинаково. */}
-                </tr>
-                <tr>
-                    <BlueCell />
-                    <CyanCell />
-                    <MagentaCell />
-                    <RedCell />
-                    <CyanCell />
-                </tr>
-                <tr>
-                    <RedCell />
-                    <MagentaCell />
-                    <BlueCell />
-                    <MagentaCell />
-                    <RedCell />
-                </tr>
-                <tr>
-                    <RedCell />
-                    <RedCell />
-                    <MagentaCell />
-                    <RedCell />
-                    <CyanCell />
-                </tr>
-                <tr>
-                    <CyanCell />
-                    <RedCell />
-                    <MagentaCell />
-                    <CyanCell />
-                    <BlueCell />
-                </tr>
-            </table>
-        );
-    }
+            </tr>
+            <tr>
+                {getSingleMarkup(field[1][0])}
+                {getSingleMarkup(field[1][1])}
+                {getSingleMarkup(field[1][2])}
+                {getSingleMarkup(field[1][3])}
+                {getSingleMarkup(field[1][4])}
+            </tr>
+            <tr>
+                {getSingleMarkup(field[2][0])}
+                {getSingleMarkup(field[2][1])}
+                {getSingleMarkup(field[2][2])}
+                {getSingleMarkup(field[2][3])}
+                {getSingleMarkup(field[2][4])}
+            </tr>
+            <tr>
+                {getSingleMarkup(field[3][0])}
+                {getSingleMarkup(field[3][1])}
+                {getSingleMarkup(field[3][2])}
+                {getSingleMarkup(field[3][3])}
+                {getSingleMarkup(field[3][4])}
+            </tr>
+            <tr>
+                {getSingleMarkup(field[4][0])}
+                {getSingleMarkup(field[4][1])}
+                {getSingleMarkup(field[4][2])}
+                {getSingleMarkup(field[4][3])}
+                {getSingleMarkup(field[4][4])}
+            </tr>
+        </table>
+    );
 }
