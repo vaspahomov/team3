@@ -97,32 +97,48 @@ export default class Field extends React.Component {
                     "colorCount": "5",
                 }
             })
-            .catch(alert("fail"));
+            .catch(x=> console.log(x));
 
 
         let resp = fetch(serv + `api/game/${userId}/getMap`)
             .then(response => response.json())
-            .catch(alert("fail"));
+            .catch(x=> console.log(x));
 
 
         console.log(resp)
 
         this.state = {
             field: [
-                [1, 2, 3, 4, 5],
-                [2, 3, 2, 2, 1],
-                [5, 2, 3, 2, 1],
-                [4, 2, 5, 4, 1],
-                [3, 2, 2, 1, 5],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
             ]
         }
     }
+
+    randomGenerate = setInterval(() => {
+        this.setState = {
+            field: [
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+                [getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5), getRandomInt(1, 5)],
+            ]
+        }
+    }, 1000);
 
     render() {
         return (
             getMarkup(this.state.field)
         );
     }
+}
+
+function getRandomInt(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
 }
 
 function getSingleMarkup(colorValue) {
