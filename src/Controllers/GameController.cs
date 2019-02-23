@@ -18,6 +18,11 @@ namespace thegame.Controllers
     {
         private static Game game { get; set; }
 
+        public GameController()
+        {
+            game = new Game(5, 5, 5);
+        }
+
         [HttpGet("{UserId}/score")]
         public IActionResult Score([FromRoute] Guid Id)
         {
@@ -32,7 +37,7 @@ namespace thegame.Controllers
                 return BadRequest();
             var user = new StartGameDTO();
             patchDocument.ApplyTo(user, ModelState);*/
-            game = new Game(5, 5, 5);
+            
             return Ok();
         }
 
@@ -46,6 +51,7 @@ namespace thegame.Controllers
         [HttpPost("postColor/{UserId}/{color}")]
         public IActionResult PostColor([FromRoute] Guid Id, [FromRoute] int color)
         {
+
             return Ok(200);
         }
     }
