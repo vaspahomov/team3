@@ -13,7 +13,7 @@ class RedCell extends React.Component {
     }
 
     handlerOnClick = event => {
-        const colorInt = 2;
+        const colorInt = 1;
         fetch(`/api/game/${userId}/postColor/${colorInt}`,
             {
                 method: "POST"
@@ -90,12 +90,16 @@ export default class Field extends React.Component {
 
     componentDidMount() {
         console.log(1)
-        fetch(`/api/game/${userId}/getMap`)
-            .then(response => response.json())
-            .then(response => {
-                this.setState({ field: response });
-                console.log(response);
-            });
+        fetch(`/api/game/${userId}/startGame`)
+            .then(()=> 
+
+
+                fetch(`/api/game/${userId}/getMap`)
+                    .then(response => response.json())
+                    .then(response => {
+                        this.setState({ field: response });
+                        console.log(response);
+                    }));
     }
 
     generateNewState = () => {

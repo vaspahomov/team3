@@ -24,14 +24,10 @@ namespace thegame.Controllers
             return Ok(50);
         }
 
-        [HttpPost("{UserId}/startGame")]
-        public IActionResult StartGame([FromRoute] Guid Id, [FromBody]
-            JsonPatchDocument<StartGameDTO> patchDocument)
+        [HttpGet("{UserId}/startGame")]
+        public IActionResult StartGame()
         {
-            /*if (patchDocument is null)
-                return BadRequest();
-            var user = new StartGameDTO();
-            patchDocument.ApplyTo(user, ModelState);*/
+            game = new Game(5, 5, 5);
             
             return Ok();
         }
