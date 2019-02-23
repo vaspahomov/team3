@@ -92,8 +92,6 @@ export default class Field extends React.Component {
         console.log(1)
         fetch(`/api/game/${userId}/startGame`)
             .then(()=> 
-
-
                 fetch(`/api/game/${userId}/getMap`)
                     .then(response => response.json())
                     .then(response => {
