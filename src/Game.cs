@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace thegame
 {
@@ -11,7 +13,7 @@ namespace thegame
         private readonly int Width;
         private readonly int Height;
 
-        public Game(int h, int w, int colorsCount = 5)
+        public Game(int h, int w, int colorsCount)
         {
             ColorsCount = colorsCount;
             Width = w;
@@ -20,12 +22,70 @@ namespace thegame
             MapGeneration();
         }
 
+        private bool TryGetValue(int x, int y, out int value)
+        {
+            value = 0;
+            try
+            {
+                value = Map[x, y];
+                return true;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+        }
+        
         public void DoStep(int color)
         {
-            int currentColor = Map[0, 0];
+            
+            //Могут быть баги 
+            //Вероятно, при Contains по хэшсету работает "неправильно"
+            var visited = new HashSet<ValueTuple<int, int>>();
+            
+            
+            
+            var currentColor = Map[0, 0];
             var queue = new Queue<ValueTuple<int, int>>();
             queue.Enqueue((0 ,0));
-            throw new NotImplementedException();
+
+
+            while (queue.Count != 0)
+            {
+                var currentPosition = queue.Dequeue();
+                var currX = currentPosition.Item1;
+                var currY = currentPosition.Item2;
+
+
+                if (TryGetValue(currX + 1, currY, out var rightValue))
+                {
+                    if (rightValue == currentColor && !visited.Contains((currX + 1, currY)))
+                        queue.Enqueue((currX + 1, currY));
+                }
+                if (TryGetValue(currX - 1, currY, out var leftValue))
+                {
+                    if (leftValue == currentColor && !visited.Contains((currX - 1, currY)))
+                        queue.Enqueue((currX - 1, currY));
+                }
+                if (TryGetValue(currX, currY + 1, out var downValue))
+                {
+                    if (downValue == currentColor && !visited.Contains((currX, currY + 1)))
+                        queue.Enqueue((currX, currY + 1));
+                }
+                if (TryGetValue(currX, currY - 1, out var upValue))
+                {
+                    if (upValue == currentColor && !visited.Contains((currX, currY - 1)))
+                        queue.Enqueue((currX , currY - 1));
+                }
+
+                visited.Add(currentPosition);
+            }
+            
+            
+            foreach (var cell in visited)
+            {
+                Map[cell.Item1, cell.Item2] = color;
+            }
         }
 
         public void MapGeneration()
