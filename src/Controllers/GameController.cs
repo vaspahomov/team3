@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace thegame.Controllers
@@ -10,5 +11,18 @@ namespace thegame.Controllers
         {
             return Ok(50);
         }
+
+        [HttpGet("getField")]
+        public IActionResult GetField()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost("postColor/{color}")]
+        public IActionResult PostColor()
+        {
+            return Ok(200);
+        }
     }
+
 }
