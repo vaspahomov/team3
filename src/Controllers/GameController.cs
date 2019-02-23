@@ -21,7 +21,7 @@ namespace thegame.Controllers
         [HttpGet("{UserId}/score")]
         public IActionResult Score([FromRoute] Guid Id)
         {
-            return Ok(50);
+            return Ok(game.score);
         }
 
         [HttpGet("{UserId}/startGame")]

@@ -9,15 +9,18 @@ namespace thegame
     class Game : IGame
     {
         public int[,] Map { get; private set; }
+        public int score { get; private set; }
         private readonly int ColorsCount;
         private readonly int Width;
         private readonly int Height;
+
 
         public Game(int h, int w, int colorsCount)
         {
             ColorsCount = colorsCount;
             Width = w;
             Height = h;
+
             Map = new int[h, w];
             MapGeneration();
         }
@@ -53,6 +56,7 @@ namespace thegame
             while (queue.Count != 0)
             {
                 var currentPosition = queue.Dequeue();
+                visited.Add(currentPosition);
                 var currX = currentPosition.Item1;
                 var currY = currentPosition.Item2;
 
@@ -78,10 +82,10 @@ namespace thegame
                         queue.Enqueue((currX , currY - 1));
                 }
 
-                visited.Add(currentPosition);
+                
             }
-            
-            
+
+            score += visited.Count * 3;
             foreach (var cell in visited)
             {
                 Map[cell.Item1, cell.Item2] = color;
