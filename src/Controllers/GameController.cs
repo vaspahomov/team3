@@ -19,13 +19,13 @@ namespace thegame.Controllers
         private static Game game { get; set; }
 
         [HttpGet("{UserId}/score")]
-        public IActionResult Score()
+        public IActionResult Score([FromRoute] Guid Id)
         {
             return Ok(50);
         }
 
         [HttpPost("{UserId}/startGame")]
-        public IActionResult StartGame([FromBody]
+        public IActionResult StartGame([FromRoute] Guid Id, [FromBody]
             JsonPatchDocument<StartGameDTO> patchDocument)
         {
             /*if (patchDocument is null)
@@ -37,14 +37,14 @@ namespace thegame.Controllers
         }
 
         [HttpGet("{UserId}/getMap")]
-        public IActionResult GetMap()
+        public IActionResult GetMap([FromRoute] Guid Id)
         {
             //Console.Write(game.Map.Length);
             return Ok(game.Map);
         }
 
         [HttpPost("postColor/{UserId}/{color}")]
-        public IActionResult PostColor()
+        public IActionResult PostColor([FromRoute] Guid Id, [FromRoute] int color)
         {
             return Ok(200);
         }
